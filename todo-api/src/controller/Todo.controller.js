@@ -14,7 +14,7 @@ class TodoController {
   static todoRegister = (req, res) => {
     let todo = new Todo(req.body)
 
-    Todo.save((error) => {
+    todo.save((error) => {
       if (error) {
         res.status(500).send({ message: `${error.message} -Failed to register` })
       } else {
