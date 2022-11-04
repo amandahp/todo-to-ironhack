@@ -9,4 +9,4 @@ router
   .put("/todos/:id", TodoController.todoUptade)
   .delete("/todos/:id", TodoController.todoDelete)
 
-export default router
+export default router;

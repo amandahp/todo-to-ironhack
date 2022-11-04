@@ -1,5 +1,5 @@
-import { Stack, Input, Button, useToast } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Stack, Input, Button, useToast } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
 const AddTodo = ({ addTodo }) => {
   const toast = useToast();
