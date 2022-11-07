@@ -2,7 +2,8 @@ import Todo from "../model/Todo.model.js";
 
 class TodoController {
   static todoList = (req, res) => {
-    Todo.find((error, todos) => {
+    const userId = req.params.userId
+    Todo.find({ userId }, (error, todos) => {
       if (error) {
         res.status(500).json({ status: 500, message: "Bad Request" })
       } else {

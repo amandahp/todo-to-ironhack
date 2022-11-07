@@ -9,6 +9,10 @@ const todoScheema = new moongose.Schema(
     completed: {
       type: Boolean,
       default: false
+    },
+    userId: {
+      type: String,
+      required: true
     }
   },
   {

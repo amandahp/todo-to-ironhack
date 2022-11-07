@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react';
 
 const ModalComponent = ({ isOpen, onClose, onSubmit, value, text, key, onChange, onClick }) => {
-  console.log(onSubmit)
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

@@ -21,7 +21,6 @@ const TodoList = ({ todos, deleteTodo, editTodo }) => {
   };
 
   const handleEditSubmit = (id, editedTodo) => {
-    console.log('aqui');
     editedTodo.title = newTodo;
     editTodo(id, editedTodo);
     setIsOpen(false)
@@ -35,7 +34,7 @@ const TodoList = ({ todos, deleteTodo, editTodo }) => {
   return (
     !todos.length ?
       <Badge
-        colorScheme="green"
+        colorScheme="teal"
         variant="outline"
         borderRadius="4"
         p='4' m='5'

@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../model/User.model.js";
+import jwt from "jsonwebtoken";
 
 class AuthController {
 
@@ -10,7 +11,6 @@ class AuthController {
     const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
     const foundUser = await User.findOne({ email });
     const salt = bcrypt.genSaltSync(10);
-
 
     if (!email || !password || !name) {
       error()
@@ -42,6 +42,29 @@ class AuthController {
         res.status(201).json({ email, name, _id })
       }
     })
+  }
+
+  static authLogin = async (req, res) => {
+    const { email, password } = req.body
+    const foundUser = await User.findOne({ email });
+
+    if (!foundUser) {
+      res.status(400).json({
+        message: 'User do not exist'
+      })
+      return;
+    }
+    const { passwordHash } = foundUser;
+    const validPassword = bcrypt.compareSync(password, passwordHash);
+
+    if (!validPassword) {
+      res.status(400).json({
+        message: 'Wrong password'
+      })
+      return;
+    }
+    const token = jwt.sign({ email }, '123', { expiresIn: '7 days' });
+    res.status(200).json({ token });
   }
 }
 
