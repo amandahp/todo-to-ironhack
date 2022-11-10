@@ -21,6 +21,9 @@ export const Login = () => {
       setCookie('token', response.data.token);
       setCookie('email', emailValue)
       navigate("/todo")
+      setEmailValue('')
+      setPasswordValue('')
+
     } catch (error) {
       console.log(error)
 

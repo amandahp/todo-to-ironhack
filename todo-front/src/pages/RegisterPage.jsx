@@ -16,6 +16,9 @@ export const Register = () => {
     try {
       e.preventDefault()
       await registerApi({ password: passwordValue, name: nameValue, email: emailValue })
+      setEmailValue('')
+      setNameValue('')
+      setPasswordValue('')
 
     } catch (e) {
       console.log("error", e)

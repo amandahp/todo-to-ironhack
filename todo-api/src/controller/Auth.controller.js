@@ -21,6 +21,7 @@ class AuthController {
       return;
     }
     if (!passwordRegex.test(password)) {
+
       error()
       return;
     }
@@ -63,7 +64,13 @@ class AuthController {
       })
       return;
     }
-    const token = jwt.sign({ email }, '123', { expiresIn: '7 days' });
+
+    const payload = {
+      id: foundUser._id,
+      email: foundUser.email
+    }
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7 days' });
     res.status(200).json({ token });
   }
 }
